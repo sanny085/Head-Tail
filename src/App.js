@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Counter from "./components/Counter";
-import { PersonDetails } from "./components/PersonDetails";
+// import Counter from "./components/Counter";
+// import { PersonDetails } from "./components/PersonDetails";
 import HeadTailGame from "./components/HeadTailGame";
 
 function App() {
