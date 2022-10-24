@@ -1,0 +1,13 @@
+.header {
+  color: "#253758";
+}
+
+.item {
+  background-color: #f2f7ff;
+  max-width: 80px;
+  max-height: 80px;
+}
+.item:hover {
+  background: #ffe4d6;
+  cursor: pointer;
+}
