@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import ReactTooltip from "react-tooltip";
 import styles from "./HeadTailsGame.module.css";
 const options = [
   {
@@ -22,6 +23,7 @@ const HeadTailGame = () => {
   const [value, setValue] = useState("");
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
+  const [hover, setHover] = useState({ row: "", col: "" });
 
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -53,6 +55,9 @@ const HeadTailGame = () => {
     let data1 = [...data];
     data1[idx].splice(idy, 1);
     setData(data1);
+  };
+  const getIndex = (idx, idy) => {
+    setHover({ row: idy + 1, col: idx + 1 });
   };
 
   return (
@@ -94,12 +99,25 @@ const HeadTailGame = () => {
             return (
               <div className="flex-column">
                 {parent.map((child, idy) => (
-                  <div
-                    className={`d-flex m-1 px-4 py-3 ${styles.item} rounded`}
-                    onClick={() => deleteItems(idx, idy)}
-                  >
-                    {child}
-                  </div>
+                  <Fragment>
+                    <a
+                      data-tip
+                      data-for="happyFace"
+                      onMouseOver={() => getIndex(idx, idy)}
+                    >
+                      <div
+                        className={`d-flex m-1 px-4 py-3 ${styles.item} rounded`}
+                        onClick={() => deleteItems(idx, idy)}
+                      >
+                        {child}
+                      </div>
+                    </a>
+                    <ReactTooltip id="happyFace" type="warning" effect="solid">
+                      <span>
+                        {`Delete - row:${hover.row}, col:${hover.col}`}{" "}
+                      </span>
+                    </ReactTooltip>
+                  </Fragment>
                 ))}
               </div>
             );
